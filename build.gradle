@@ -1,0 +1,52 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+version = '0.2'
+
+jar
+{
+    manifest 
+    {
+        attributes 'Implementation-Title': 'ExtJS MVC Colors', 'Implementation-Version': version
+    }
+}
+
+
+task wrapper(type: Wrapper){
+	gradleVersion = '1.10'
+}
+
+
+configurations {
+    javac2
+}
+
+dependencies 
+{
+    //run gradle with 'gradle -PIDEA_HOME=path/to/intellij/homedir'
+    compile files("$IDEA_HOME/lib/openapi.jar")
+    compile files("$IDEA_HOME/lib/util.jar")
+    compile files("$IDEA_HOME/lib/annotations.jar")
+    compile files("$IDEA_HOME/lib/idea.jar")
+    compile files("$IDEA_HOME/lib/extensions.jar")
+
+    javac2 files("$IDEA_HOME/lib/javac2.jar")
+    javac2 files("$IDEA_HOME/lib/forms_rt.jar")
+    javac2 files("$IDEA_HOME/lib/asm4-all.jar")
+}
+
+compileJava {
+    doLast {
+        ant.taskdef   name: 'javac2', classname: 'com.intellij.ant.Javac2', classpath: configurations.javac2.asPath
+
+        ant.javac2     srcdir: project.sourceSets.main.java.srcDirs.join(':'),
+                    classpath: project.sourceSets.main.compileClasspath.asPath,
+                      destdir: project.sourceSets.main.output.classesDir,
+                       source: sourceCompatibility,
+                       target: targetCompatibility,
+            includeAntRuntime: false
+    }
+}

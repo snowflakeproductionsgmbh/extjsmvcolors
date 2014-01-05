@@ -25,8 +25,6 @@ import java.awt.*;
 
 public class FileTabColorProvider implements EditorTabColorProvider {
 
-	public static final Color COLOR_DEFAULT 	= new Color(241, 241, 240);
-
 	public static final Color COLOR_MODEL		= new Color(243, 198, 196);		// red
 	public static final Color COLOR_VIEW		= new Color(206, 250, 198);		// green
 	public static final Color COLOR_CONTROLLER	= new Color(255, 251, 206);		// yellow
@@ -62,7 +60,7 @@ public class FileTabColorProvider implements EditorTabColorProvider {
             }
 		}
 
-		return COLOR_DEFAULT;
+		return null;
 	}
 
 }

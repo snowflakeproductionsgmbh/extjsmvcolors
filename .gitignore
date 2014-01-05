@@ -1,0 +1,5 @@
+/target
+/build
+/.gradle
+extjsmvcolors.iml
+src/main/resources/META-INF/MANIFEST.MF
