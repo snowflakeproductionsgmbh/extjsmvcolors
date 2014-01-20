@@ -30,6 +30,7 @@ public class FileTabColorProvider implements EditorTabColorProvider {
 	public static final Color COLOR_MODEL		= new Color(243, 198, 196);		// red
 	public static final Color COLOR_VIEW		= new Color(206, 250, 198);		// green
 	public static final Color COLOR_CONTROLLER	= new Color(255, 251, 206);		// yellow
+    public static final Color COLOR_STORE    	= new Color(185, 211, 230);     // blue
 
 
 
@@ -48,7 +49,9 @@ public class FileTabColorProvider implements EditorTabColorProvider {
 			if( FileAffiliator.isControllerFile() ) {
 				return COLOR_CONTROLLER;
 			}
-
+            if( FileAffiliator.isStoreFile() ) {
+                return COLOR_STORE;
+            }
 
                 // Fallback: check also filename
             if( FileAffiliator.isModelFile(true) ) {
@@ -59,6 +62,9 @@ public class FileTabColorProvider implements EditorTabColorProvider {
             }
             if( FileAffiliator.isControllerFile(true) ) {
                 return COLOR_CONTROLLER;
+            }
+            if( FileAffiliator.isStoreFile(true) ) {
+                return COLOR_STORE;
             }
 		}
 

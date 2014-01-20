@@ -23,6 +23,8 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiManager;
 
+
+
 public class FileTabTitleProvider implements EditorTabTitleProvider {
 
 	public String getEditorTabTitle(Project project, VirtualFile file) {
@@ -36,6 +38,18 @@ public class FileTabTitleProvider implements EditorTabTitleProvider {
 
 			try {
 				String fileContents	= psiFile.getOriginalFile().getText();
+
+                    // Grab @title if available
+                title	= extractPropertyValue(fileContents, "@title");
+                if( title != null ) return title;
+
+                    // Grab last folder and filename if available
+                String filePath = FileAffiliator.getFilePath();
+                String[] filePathArray = filePath.split("/");
+                String folder = filePathArray[filePathArray.length-2];
+                StringBuilder titleBuilder = new StringBuilder(folder).append('/').append(FileAffiliator.getFileName());
+                title = titleBuilder.toString();
+                if( title != null ) return title;
 
 					// Grab alias if available
 				title	= extractPropertyValue(fileContents, "alias");

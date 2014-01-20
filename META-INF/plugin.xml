@@ -15,45 +15,59 @@
   -->
 
 <idea-plugin version="2">
-  <name>ExtJsMVColors</name>
-  <description><![CDATA[
-  Ext Js MVColors eases the work with Ext Js files by labeling tabs of open MVC files
-  from their actual content (the defined namespace or alias).
-  Additional specific file icons and tab background colors are set for
-  model (red), view (green) and controller (yellow) files.
-  <br/><br/>
-  Please note: This plugin is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ]]></description>
-  <vendor url="http://www.snowflake.ch/" email="kstenschke@snowflake.ch">snowflake productions GmbH</vendor>
-  <version>1.0.0</version>
+    <id>com.sfp.extJsMVColors</id>
+    <name>ExtJS MVC Colors and Labels</name>
+    <version>1.1.0</version>
+    <vendor url="http://www.snowflake.ch/" email="kstenschke@snowflake.ch">snowflake productions GmbH</vendor>
 
-  <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
-  <idea-version since-build="8000"/>
+    <description>
+        <![CDATA[
+            Ext Js MVColors eases the work with Ext Js files by labeling tabs of open MVC files
+            from their actual content (the defined @title, last folder and filename, namespace or alias).
+            Additional specific file icons and tab background colors are set for
+            model (red), view (green), controller (yellow) and store (blue) files.
+            <br/><br/>
+            Please note: This plugin is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        ]]>
+    </description>
 
-    <change-notes><![CDATA[
-    1.0.0<br/>
-    <ul><li>Initial release</li></ul>
-  ]]></change-notes>
+    <change-notes>
+        <![CDATA[
+            <b>1.0.0</b><br/>
+            <ul><li>Initial release</li></ul>
+            <b>1.1.0</b><br/>
+            <ul><li>added store color</li><li>tab label grabed from @title or last folder name and filename</li></ul>
+        ]]>
+    </change-notes>
 
-  <application-components>
-    <!-- Add your application components here -->
-  </application-components>
+    <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
+    <idea-version since-build="107.105"/>
 
-  <project-components>
-    <!-- Add your project components here -->
-      <component>
-          <implementation-class>com.sfp.extJsMVColors.FileOpenedProjectComponent</implementation-class>
-      </component>
-  </project-components>
+    <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products -->
+    <depends>com.intellij.modules.lang</depends>
 
-  <actions>
-  </actions>
+
+    <application-components>
+        <!-- Add your application components here -->
+    </application-components>
+
+    <project-components>
+        <!-- Add your project components here -->
+    </project-components>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
 
     <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
         <editorTabTitleProvider implementation="com.sfp.extJsMVColors.FileTabTitleProvider"/>
         <editorTabColorProvider implementation="com.sfp.extJsMVColors.FileTabColorProvider"/>
         <iconProvider implementation="com.sfp.extJsMVColors.FileIconProvider"/>
+        <!--
+            <applicationConfigurable instance="com.sfp.extJsMVColors.Settings"></applicationConfigurable>
+        -->
     </extensions>
-
-    <depends>com.intellij.modules.lang</depends>
 </idea-plugin>
